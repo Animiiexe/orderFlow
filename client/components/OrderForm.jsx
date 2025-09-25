@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import API from '../utils/api';
-import { Users, Package, Settings, FileText, ArrowRight, Check, AlertCircle, Upload, X } from 'lucide-react';
+import { Users, Package, FileText, ArrowRight, Check, AlertCircle, Upload, X } from 'lucide-react';
 
 export default function OrderForm() {
   const [form, setForm] = useState({

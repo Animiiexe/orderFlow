@@ -4,10 +4,6 @@ import { Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import ReduxProviderWrapper from "@/components/ReduxProviderWrapper";
 
-
-
-
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],

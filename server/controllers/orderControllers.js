@@ -1,20 +1,25 @@
-import Order from '../models/Order.js';
-import path from 'path';
-import fs from 'fs';
+import Order from "../models/Order.js";
+import path from "path";
+import fs from "fs";
 import { fileURLToPath } from "url";
 
-// 🔹 Recreate __dirname for ES Modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const orderController = {
   createOrder: async (req, res, next) => {
     try {
-      const { customerName, email, contactNumber, shippingAddress, productName, quantity } = req.body;
+      const {
+        customerName,
+        email,
+        contactNumber,
+        shippingAddress,
+        productName,
+        quantity,
+      } = req.body;
       let productImageUrl = null;
 
       if (req.file) {
-        // store relative path
         productImageUrl = `/uploads/${req.file.filename}`;
       }
 
@@ -28,9 +33,9 @@ const orderController = {
         productImageUrl,
       });
 
-      if (req.io) req.io.emit('newOrder', order);
+      if (req.io) req.io.emit("newOrder", order);
 
-      res.status(201).json({ message: 'Order placed', order });
+      res.status(201).json({ message: "Order placed", order });
     } catch (err) {
       next(err);
     }
@@ -41,7 +46,7 @@ const orderController = {
       const { productName, fromDate, toDate } = req.query;
       const filter = {};
 
-      if (productName) filter.productName = new RegExp(productName, 'i');
+      if (productName) filter.productName = new RegExp(productName, "i");
       if (fromDate || toDate) {
         filter.createdAt = {};
         if (fromDate) filter.createdAt.$gte = new Date(fromDate);
@@ -58,7 +63,7 @@ const orderController = {
   getOrder: async (req, res, next) => {
     try {
       const order = await Order.findById(req.params.id);
-      if (!order) return res.status(404).json({ message: 'Order not found' });
+      if (!order) return res.status(404).json({ message: "Order not found" });
       res.json({ order });
     } catch (err) {
       next(err);
@@ -69,15 +74,19 @@ const orderController = {
     try {
       const { quantity } = req.body;
       if (!Number.isInteger(quantity) || quantity < 1 || quantity > 100) {
-        return res.status(400).json({ message: 'Invalid quantity' });
+        return res.status(400).json({ message: "Invalid quantity" });
       }
 
-      const order = await Order.findByIdAndUpdate(req.params.id, { quantity }, { new: true });
-      if (!order) return res.status(404).json({ message: 'Order not found' });
+      const order = await Order.findByIdAndUpdate(
+        req.params.id,
+        { quantity },
+        { new: true }
+      );
+      if (!order) return res.status(404).json({ message: "Order not found" });
 
-      if (req.io) req.io.emit('updateOrder', order);
+      if (req.io) req.io.emit("updateOrder", order);
 
-      res.json({ message: 'Quantity updated', order });
+      res.json({ message: "Quantity updated", order });
     } catch (err) {
       next(err);
     }
@@ -104,7 +113,7 @@ const orderController = {
     } catch (err) {
       next(err);
     }
-  }
+  },
 };
 
 export default orderController;

@@ -1,13 +1,4 @@
 import express from 'express';
-
-declare global {
-  namespace Express {
-    interface Request {
-      io: SocketIOServer;
-    }
-  }
-}
-
 import http from 'http';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -19,7 +10,13 @@ import authRoutes from './routes/authRoutes.js';
 import errorHandler from './middlewares/errorHandler.js';
 import path from 'path';
 import { Server as SocketIOServer } from 'socket.io';
-
+declare global {
+  namespace Express {
+    interface Request {
+      io: SocketIOServer;
+    }
+  }
+}
 const app = express();
 const server = http.createServer(app);
 const io = new SocketIOServer(server, {

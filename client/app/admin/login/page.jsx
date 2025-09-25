@@ -29,7 +29,6 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="relative w-full max-w-md">
-        {/* Background Decorations */}
 
         <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent backdrop-blur-sm rounded-2xl"></div>
         
