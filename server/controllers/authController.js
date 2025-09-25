@@ -18,7 +18,7 @@ login : async (req, res, next) => {
     // set HttpOnly cookie
     res.cookie('token', token, {
   httpOnly: true,
-  secure: process.env.NODE_ENV === 'production', 
+  secure:true, 
   sameSite: 'none', 
   maxAge: 6 * 60 * 60 * 1000,
     });
