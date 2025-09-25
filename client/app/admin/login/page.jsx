@@ -131,6 +131,9 @@ export default function LoginPage() {
             <p className="text-xs text-gray-500">
               Secure access • Admin privileges required
             </p>
+            <h2>
+              Username: <span className="font-mono text-gray-400">Ace</span> | Password: <span className="font-mono text-gray-400">Ace123</span>
+            </h2>
           </div>
         </form>
 
