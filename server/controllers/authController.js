@@ -17,10 +17,10 @@ login : async (req, res, next) => {
 
     // set HttpOnly cookie
     res.cookie('token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      maxAge: 6 * 60 * 60 * 1000
+  httpOnly: true,
+  secure: process.env.NODE_ENV === 'production', 
+  sameSite: 'none', 
+  maxAge: 6 * 60 * 60 * 1000,
     });
 
     res.json({ message: 'Logged in' });
