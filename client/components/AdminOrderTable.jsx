@@ -125,7 +125,7 @@ export default function AdminOrdersTable() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
-                    {orders.map(o => (
+                    {orders.length > 0 ? (orders.map(o => (
                       <tr key={o._id} className="hover:bg-gray-50/50 transition-colors duration-200 group">
                         <td className="px-6 py-4">
                           <div className="flex items-center space-x-3">
@@ -190,7 +190,12 @@ export default function AdminOrdersTable() {
                           </div>
                         </td>
                       </tr>
-                    ))}
+                    )
+                    )) : (
+                      <tr>
+                        <td colSpan="5" className="px-6 py-12 text-center text-gray-500"> No orders found.</td>
+                      </tr>
+                    )}
                   </tbody>
                 </table>
               </div>
