@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOrders, updateQuantity, deleteOrder, addOrderRealtime, updateOrderRealtime, deleteOrderRealtime } from '../store/orderSlice';
-import API from '../utils/api';
+
 import { io } from 'socket.io-client';
 import Link from 'next/link';
 import { Package } from 'lucide-react';

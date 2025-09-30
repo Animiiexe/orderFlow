@@ -41,10 +41,8 @@ app.use(cors({
 
 // serve uploads
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
 app.use('/api/auth', authRoutes);
 app.use('/api/orders', orderRoutes);
-
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
